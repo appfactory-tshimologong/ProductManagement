@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {IProduct} from './product';
 import {ProductService} from './product.service';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ProductDetailComponent } from './product-detail.component';
+
 
 @Component({
    templateUrl: './product-list.component.html',
@@ -29,8 +32,13 @@ export class ProductListComponent implements OnInit
 
   products: IProduct[];
 
- constructor(private productService: ProductService){
   
+ constructor(private productService: ProductService,public dialog: MatDialog ){
+  
+ }
+
+ openDialog(){
+   this.dialog.open(ProductDetailComponent,{data: 1});
  }
 
  onRatingClicked(message:string): void{
@@ -38,7 +46,7 @@ export class ProductListComponent implements OnInit
  }
 
  ngOnInit(): void {
-  this.productService.getProducts().subscribe({
+   this.productService.getProducts().subscribe({
     next: products => {
       this.products = products;
       this.filteredProducts = this.products;

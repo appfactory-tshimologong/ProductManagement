@@ -48,6 +48,7 @@
                    height='50'>
             </td>
             <td>
+              <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
               <a [routerLink]="['/products',product.productId]">{{ product.productName }}</a> 
             </td>
             <td>{{ product.productCode | lowercase |convertToSpaces: '-'}}</td>
